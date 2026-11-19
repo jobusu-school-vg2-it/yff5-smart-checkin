@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="no">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Besøksoversikt</title>
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='style.css') }}"
+		/>
+	</head>
+	<body>
+		<main class="panel wide">
+			<h1>Besøksoversikt</h1>
+			<p>Test med fiktive navn, ikke ekte personopplysninger.</p>
+			<table>
+				<thead>
+					<tr>
+						<th>Navn</th>
+						<th>Formål</th>
+						<th>Inn</th>
+						<th>Status</th>
+						<th>Handling</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for visit in visits %}
+					<tr>
+						<td>{{ visit.name }}</td>
+						<td>{{ visit.purpose }}</td>
+						<td>{{ visit.in_time }}</td>
+						<td>{{ 'Utsjekket' if visit.out_time else 'Inne' }}</td>
+						<td>
+							{% if not visit.out_time %}
+							<form
+								method="post"
+								action="{{ url_for('check_out_visit', visit_id=visit['id']) }}"
+							>
+								<button>Sjekk ut</button>
+							</form>
+							{% endif %}
+						</td>
+					</tr>
+					{% else %}
+					<tr>
+						<td colspan="5">Ingen registreringer ennå.</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+			<p><a href="{{ url_for('index') }}">Til registrering</a></p>
+		</main>
+	</body>
+</html>

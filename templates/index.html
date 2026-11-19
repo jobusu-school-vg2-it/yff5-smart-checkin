@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="no">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Smart Check-in</title>
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='style.css') }}"
+		/>
+	</head>
+	<body>
+		<main class="panel">
+			<h1>Smart Check-in</h1>
+			<p>Velkommen! Registrer besøket ditt.</p>
+			{% if message %}
+			<p class="message">{{ message }}</p>
+			{% endif %}
+			<form method="post" action="{{ url_for('register') }}">
+				<label>Navn<input name="name" maxlength="80" required /></label
+				><label
+					>Besøksformål<input name="purpose" maxlength="120" required /></label
+				><button type="submit">Sjekk inn</button>
+			</form>
+			<p><a href="{{ url_for('admin') }}">Åpne besøksoversikten</a></p>
+		</main>
+	</body>
+</html>
