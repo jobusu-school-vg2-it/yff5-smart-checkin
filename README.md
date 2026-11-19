@@ -1,0 +1,2 @@
+## Om prosjektet
+Prosjektet handler om å gjøre ferdig en enkel statisk webapplikasjon med en Python Flask og SQlite backend. Applikasjonen er et besøksregister for en fiktiv bedrift. Selve oppgaven finnes her: [oppdrag.md](oppdrag.md)
